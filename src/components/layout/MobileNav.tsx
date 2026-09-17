@@ -32,7 +32,7 @@ export function MobileNav({ isOpen, onClose }: { isOpen: boolean; onClose: () =>
         }`}
       >
         <div className="flex items-center justify-between px-6 py-5 border-b border-line">
-          <span className="font-display text-2xl text-charcoal">Fathom</span>
+          <span className="font-display text-2xl text-charcoal">DropEra</span>
           <button onClick={onClose} aria-label="Close menu" className="w-9 h-9 flex items-center justify-center">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M1 1L15 15M15 1L1 15" stroke="currentColor" strokeWidth="1.5" />

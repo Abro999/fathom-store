@@ -1,7 +1,7 @@
 const values = [
   {
     title: "Every product is chosen, not sourced in bulk",
-    body: "We test before we list. If it doesn't earn a place in our own homes, it doesn't earn a place on Fathom.",
+    body: "We test before we list. If it doesn't earn a place in our own homes, it doesn't earn a place on DropEra.",
     icon: (
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.3">
         <path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5L12 3z" />

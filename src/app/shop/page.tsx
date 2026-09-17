@@ -13,7 +13,7 @@ const VALID_SORTS: NonNullable<ProductFilters["sort"]>[] = [
 
 export const metadata: Metadata = {
   title: "Shop all products",
-  description: "Browse Fathom's full curated catalog across tech, home, fashion, accessories and outdoor.",
+  description: "Browse DropEra's full curated catalog across tech, home, fashion, accessories and outdoor.",
 };
 
 export default async function ShopPage({

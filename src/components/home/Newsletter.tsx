@@ -17,7 +17,7 @@ export function Newsletter() {
           onSubmit={(e) => {
             e.preventDefault();
             if (!email.trim()) return;
-            show("You're on the list — welcome to Fathom.");
+            show("You're on the list — welcome to DropEra.");
             setEmail("");
           }}
           className="flex flex-col sm:flex-row gap-3"

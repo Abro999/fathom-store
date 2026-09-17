@@ -41,7 +41,7 @@ export function Header() {
           </button>
 
           <Link href="/" className="font-display text-2xl tracking-tight text-charcoal">
-            Fathom
+            DropEra
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 font-sans text-[15px] text-charcoal">

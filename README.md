@@ -1,4 +1,4 @@
-# Fathom — premium curated storefront
+# DropEra — premium curated storefront
 
 "Objects worth finding." A Next.js 14 (App Router) + TypeScript + Tailwind storefront
 built for a mixed-category dropshipping/curated brand, architected so the commerce

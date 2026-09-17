@@ -11,7 +11,7 @@ export function Hero() {
             Good taste, done finding things for you.
           </h1>
           <p className="font-sans text-cream/70 text-base md:text-lg max-w-md">
-            Fathom is a running search for the object that actually earns its shelf space —
+            DropEra is a running search for the object that actually earns its shelf space —
             tested, sourced, and shipped without the thirty tabs of research.
           </p>
           <div className="flex flex-wrap gap-4 pt-2">

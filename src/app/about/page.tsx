@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/Button";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "The story behind Fathom — a curated store for objects worth finding.",
+  description: "The story behind DropEra — a curated store for objects worth finding.",
 };
 
 export default function AboutPage() {
@@ -14,14 +14,14 @@ export default function AboutPage() {
       <PageHeader
         eyebrow="Our story"
         title="We got tired of scrolling through everything to find the right thing."
-        description="Fathom started as a shared list between three friends who kept sending each other links to things worth owning. It's now a store — same standard, more categories."
+        description="DropEra started as a shared list between three friends who kept sending each other links to things worth owning. It's now a store — same standard, more categories."
       />
 
       <section className="container-page py-16 md:py-24 grid md:grid-cols-2 gap-10 items-center">
         <div className="relative aspect-[4/3] overflow-hidden order-2 md:order-1">
           <Image
             src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?q=80&w=1200&auto=format&fit=crop"
-            alt="Fathom's small product review team at a work table"
+            alt="DropEra's small product review team at a work table"
             fill
             sizes="50vw"
             className="object-cover"
@@ -30,7 +30,7 @@ export default function AboutPage() {
         <div className="order-1 md:order-2 flex flex-col gap-4">
           <h2 className="font-display text-3xl text-charcoal">How we choose</h2>
           <p className="font-sans text-charcoal/70 leading-relaxed">
-            Every product on Fathom is used by someone on our small team before it's listed. We
+            Every product on DropEra is used by someone on our small team before it's listed. We
             care about materials, how something ages, and whether the price matches what's
             actually inside it — not just how it photographs.
           </p>

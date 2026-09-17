@@ -23,20 +23,20 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.fathomgoods.example"),
   title: {
-    default: "Fathom — Objects worth finding",
-    template: "%s | Fathom",
+    default: "DropEra — Objects worth finding",
+    template: "%s | DropEra",
   },
   description:
-    "Fathom is a curated store for tech, home, fashion and everyday-carry objects worth finding — tested and sourced by people who actually use them.",
+    "DropEra is a curated store for tech, home, fashion and everyday-carry objects worth finding — tested and sourced by people who actually use them.",
   openGraph: {
-    title: "Fathom — Objects worth finding",
+    title: "DropEra — Objects worth finding",
     description: "A curated, cross-category store for objects worth finding.",
     type: "website",
-    siteName: "Fathom",
+    siteName: "DropEra",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Fathom — Objects worth finding",
+    title: "DropEra — Objects worth finding",
     description: "A curated, cross-category store for objects worth finding.",
   },
   robots: { index: true, follow: true },
@@ -52,7 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Fathom",
+              name: "DropEra",
               url: "https://www.fathomgoods.example",
               logo: "https://www.fathomgoods.example/logo.png",
             }),
