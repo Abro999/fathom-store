@@ -1,9 +1,10 @@
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 
-export default function OrderConfirmedPage() {
+function OrderConfirmedContent() {
   const params = useSearchParams();
   const paymentId = params.get("payment_id");
 
@@ -26,5 +27,13 @@ export default function OrderConfirmedPage() {
         Continue shopping
       </Button>
     </div>
+  );
+}
+
+export default function OrderConfirmedPage() {
+  return (
+    <Suspense fallback={null}>
+      <OrderConfirmedContent />
+    </Suspense>
   );
 }
