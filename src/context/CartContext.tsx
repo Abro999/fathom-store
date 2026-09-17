@@ -20,12 +20,13 @@ interface CartContextValue {
   addItem: (product: Product, variant: ProductVariant, quantity?: number) => Promise<void>;
   updateQuantity: (lineId: string, quantity: number) => Promise<void>;
   removeItem: (lineId: string) => Promise<void>;
+  clearCart: () => void;
   lineCount: number;
 }
 
 const CartContext = createContext<CartContextValue | undefined>(undefined);
 
-const CART_ID_KEY = "fathom_cart_id";
+const CART_ID_KEY = "dropera_cart_id";
 
 function getOrCreateCartId(): string {
   if (typeof window === "undefined") return "server-cart";
@@ -92,6 +93,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     [cartId]
   );
 
+  const clearCart = useCallback(() => {
+    const newId = `cart-${crypto.randomUUID()}`;
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(CART_ID_KEY, newId);
+    }
+    setCartId(newId);
+    setCart({ id: newId, lines: [], subtotal: 0, currency: cart?.currency ?? "INR" });
+  }, [cart]);
+
   const lineCount = useMemo(
     () => cart?.lines.reduce((sum, l) => sum + l.quantity, 0) ?? 0,
     [cart]
@@ -106,6 +116,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     addItem,
     updateQuantity,
     removeItem,
+    clearCart,
     lineCount,
   };
 
