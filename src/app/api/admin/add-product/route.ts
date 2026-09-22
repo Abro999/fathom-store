@@ -19,6 +19,19 @@ function parseVariants(text: string, optionName: string, comparePrice?: number) 
   });
 }
 
+function parseFaqs(text: string) {
+  return text
+    .split("\n")
+    .map((l) => l.trim())
+    .filter(Boolean)
+    .map((line) => {
+      const idx = line.indexOf("|");
+      return idx === -1
+        ? { question: line, answer: "" }
+        : { question: line.slice(0, idx).trim(), answer: line.slice(idx + 1).trim() };
+    });
+}
+
 async function uploadImage(
   owner: string,
   repo: string,
@@ -58,6 +71,7 @@ export async function POST(req: Request) {
       variants: variantsText,
       features,
       specifications,
+      faqs: faqsText,
       shipping,
       badges,
     } = body;
@@ -85,7 +99,6 @@ export async function POST(req: Request) {
     const basePrice = parsedVariants[0]?.price ?? 0;
     const totalInventory = parsedVariants.reduce((sum, v) => sum + v.inventory, 0);
 
-    // Upload each photo into /public/uploads, then reference it by its local path.
     const imagePaths: string[] = [];
     for (let i = 0; i < imageFiles.length; i++) {
       const file = imageFiles[i];
@@ -107,6 +120,7 @@ export async function POST(req: Request) {
           ? { label: line, value: "" }
           : { label: line.slice(0, idx).trim(), value: line.slice(idx + 1).trim() };
       });
+    const faqLines = parseFaqs(faqsText || "");
 
     const imagesCode = imagePaths
       .map(
@@ -130,6 +144,7 @@ export async function POST(req: Request) {
 
     const featuresCode = JSON.stringify(featureLines);
     const specsCode = JSON.stringify(specLines);
+    const faqsCode = JSON.stringify(faqLines);
     const badgesCode = badges && badges.length ? JSON.stringify(badges) : "undefined";
 
     const entry = `
@@ -158,7 +173,7 @@ ${variantsCode}
     shipping: ${JSON.stringify(shipping || "Ships in 3-5 business days.")},
     specifications: ${specsCode},
     features: ${featuresCode},
-    faqs: [],
+    faqs: ${faqsCode},
   },`;
 
     const getRes = await fetch(`${GITHUB_API}/repos/${owner}/${repo}/contents/${productsPath}`, {
