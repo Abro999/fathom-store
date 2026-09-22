@@ -41,6 +41,7 @@ export default function AdminAddProductPage() {
     variants: "Default | 999 | 20",
     features: "",
     specifications: "",
+    faqs: "",
     shipping: "Ships in 3-5 business days.",
   });
   const [badges, setBadges] = useState<string[]>([]);
@@ -109,6 +110,7 @@ export default function AdminAddProductPage() {
         variants: "Default | 999 | 20",
         features: "",
         specifications: "",
+        faqs: "",
         shipping: "Ships in 3-5 business days.",
       });
       setBadges([]);
@@ -164,7 +166,7 @@ export default function AdminAddProductPage() {
 
         <div>
           <label className="text-xs font-sans text-charcoal/50 mb-1 block">Product photos (first one is the main photo)</label>
-          <input type="file" accept="image/*" multiple capture="environment" onChange={handleFiles} className={inputClass} />
+          <input type="file" accept="image/*" multiple onChange={handleFiles} className={inputClass} />
           {images.length > 0 && (
             <div className="flex gap-2 mt-3 flex-wrap">
               {images.map((img) => (
@@ -242,6 +244,20 @@ export default function AdminAddProductPage() {
             className={inputClass}
             rows={3}
             placeholder={"Material: Cotton\nWeight: 200g"}
+          />
+        </div>
+
+        <div>
+          <label className="text-xs font-sans text-charcoal/50 mb-1 block">
+            FAQs — one per line, format: Question | Answer
+          </label>
+          <textarea
+            name="faqs"
+            value={form.faqs}
+            onChange={handleChange}
+            className={inputClass}
+            rows={3}
+            placeholder={"Is this waterproof? | Yes, rated IPX4.\nDoes it come with a charger? | Yes, included."}
           />
         </div>
 
