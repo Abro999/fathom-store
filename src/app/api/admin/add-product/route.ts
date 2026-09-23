@@ -66,6 +66,7 @@ export async function POST(req: Request) {
       description,
       imageFiles,
       category,
+      currency,
       comparePrice,
       optionName,
       variants: variantsText,
@@ -93,6 +94,7 @@ export async function POST(req: Request) {
     }
 
     const id = `p-${Date.now()}`;
+    const currencyCode = currency || "INR";
     const comparePriceNum = comparePrice ? Number(comparePrice) : undefined;
 
     const parsedVariants = parseVariants(variantsText, optionName, comparePriceNum);
@@ -159,7 +161,7 @@ ${imagesCode}
     ],
     price: ${basePrice},
     ${comparePriceNum ? `compareAtPrice: ${comparePriceNum},` : ""}
-    currency: "INR",
+    currency: ${JSON.stringify(currencyCode)},
     variants: [
 ${variantsCode}
     ],
