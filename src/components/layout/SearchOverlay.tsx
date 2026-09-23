@@ -6,8 +6,9 @@ import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAllProducts } from "@/data/products";
 import { categories } from "@/data/categories";
+import { formatPrice } from "@/lib/currency";
 
-const RECENT_KEY = "fathom_recent_searches";
+const RECENT_KEY = "dropera_recent_searches";
 const POPULAR = ["Wireless headphones", "Field watch", "Weekender bag", "Linen"];
 
 export function SearchOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -82,7 +83,7 @@ export function SearchOverlay({ isOpen, onClose }: { isOpen: boolean; onClose: (
                   <Image src={p.images[0].url} alt={p.title} fill sizes="200px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <p className="text-sm font-sans text-charcoal">{p.title}</p>
-                <p className="text-xs text-charcoal/50 font-sans">${p.price}</p>
+                <p className="text-xs text-charcoal/50 font-sans">{formatPrice(p.price, p.currency)}</p>
               </Link>
             ))}
           </div>

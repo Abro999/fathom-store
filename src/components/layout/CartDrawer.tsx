@@ -7,10 +7,12 @@ import { Drawer } from "@/components/ui/Drawer";
 import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { getAllProducts } from "@/data/products";
+import { formatPrice } from "@/lib/currency";
 
 export function CartDrawer() {
   const { cart, isOpen, closeCart, updateQuantity, removeItem } = useCart();
   const lines = cart?.lines ?? [];
+  const currency = cart?.currency ?? "INR";
   const crossSell = getAllProducts()
     .filter((p) => !lines.some((l) => l.productId === p.id))
     .slice(0, 3);
@@ -29,7 +31,7 @@ export function CartDrawer() {
             </div>
             <div className="flex items-center justify-between font-display text-lg">
               <span>Subtotal</span>
-              <span>${cart?.subtotal.toFixed(2)}</span>
+              <span>{formatPrice(cart?.subtotal ?? 0, currency)}</span>
             </div>
             <Button href="/cart" variant="primary" size="lg" onClick={closeCart}>
               Checkout
@@ -85,7 +87,7 @@ export function CartDrawer() {
                         +
                       </button>
                     </div>
-                    <span className="font-sans text-sm">${(line.price * line.quantity).toFixed(2)}</span>
+                    <span className="font-sans text-sm">{formatPrice(line.price * line.quantity, currency)}</span>
                   </div>
                 </div>
               </li>
@@ -103,7 +105,7 @@ export function CartDrawer() {
                     </div>
                     <div className="flex-1">
                       <p className="text-sm font-sans text-charcoal group-hover:underline">{p.title}</p>
-                      <p className="text-xs text-charcoal/50 font-sans">${p.price}</p>
+                      <p className="text-xs text-charcoal/50 font-sans">{formatPrice(p.price, p.currency)}</p>
                     </div>
                   </Link>
                 ))}
