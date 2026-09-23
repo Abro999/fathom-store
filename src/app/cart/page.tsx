@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { getAllProducts } from "@/data/products";
 import { RazorpayButton } from "@/components/checkout/RazorpayButton";
+import { formatPrice } from "@/lib/currency";
 
 export default function CartPage() {
   const { cart, updateQuantity, removeItem } = useCart();
@@ -15,6 +16,7 @@ export default function CartPage() {
   const [couponError, setCouponError] = useState("");
 
   const lines = cart?.lines ?? [];
+  const currency = cart?.currency ?? "INR";
   const crossSell = getAllProducts()
     .filter((p) => !lines.some((l) => l.productId === p.id))
     .slice(0, 4);
@@ -54,7 +56,9 @@ export default function CartPage() {
                   <Link href={`/product/${line.slug}`} className="font-display text-lg text-charcoal">
                     {line.productTitle}
                   </Link>
-                  <span className="font-sans text-base text-charcoal">${(line.price * line.quantity).toFixed(2)}</span>
+                  <span className="font-sans text-base text-charcoal">
+                    {formatPrice(line.price * line.quantity, currency)}
+                  </span>
                 </div>
                 <span className="text-sm text-charcoal/50 font-sans">{line.variantTitle}</span>
                 <div className="flex items-center justify-between mt-2">
@@ -99,7 +103,7 @@ export default function CartPage() {
           <div className="flex flex-col gap-2 text-sm font-sans">
             <div className="flex justify-between">
               <span className="text-charcoal/60">Subtotal</span>
-              <span>${cart?.subtotal.toFixed(2)}</span>
+              <span>{formatPrice(cart?.subtotal ?? 0, currency)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-charcoal/60">Shipping</span>
@@ -108,7 +112,7 @@ export default function CartPage() {
           </div>
           <div className="flex justify-between font-display text-xl pt-3 border-t border-line">
             <span>Total</span>
-            <span>${cart?.subtotal.toFixed(2)}</span>
+            <span>{formatPrice(cart?.subtotal ?? 0, currency)}</span>
           </div>
 
           {cart && <RazorpayButton cart={cart} />}
@@ -128,7 +132,7 @@ export default function CartPage() {
                   <Image src={p.images[0].url} alt={p.title} fill sizes="200px" className="object-cover transition-transform duration-500 group-hover:scale-105" />
                 </div>
                 <p className="text-sm font-sans text-charcoal">{p.title}</p>
-                <p className="text-xs text-charcoal/50 font-sans">${p.price}</p>
+                <p className="text-xs text-charcoal/50 font-sans">{formatPrice(p.price, p.currency)}</p>
               </Link>
             ))}
           </div>
