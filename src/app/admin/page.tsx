@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 const CATEGORIES = ["tech", "home", "fashion", "accessories", "outdoor"];
+const CURRENCIES = ["INR", "USD", "EUR", "GBP", "AED", "AUD", "CAD"];
 
 function compressImage(file: File, maxWidth = 1200, quality = 0.8): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -36,6 +37,7 @@ export default function AdminAddProductPage() {
     descriptor: "",
     description: "",
     category: "tech",
+    currency: "INR",
     comparePrice: "",
     optionName: "",
     variants: "Default | 999 | 20",
@@ -105,6 +107,7 @@ export default function AdminAddProductPage() {
         descriptor: "",
         description: "",
         category: "tech",
+        currency: "INR",
         comparePrice: "",
         optionName: "",
         variants: "Default | 999 | 20",
@@ -189,6 +192,17 @@ export default function AdminAddProductPage() {
           <label className="text-xs font-sans text-charcoal/50 mb-1 block">Category</label>
           <select name="category" value={form.category} onChange={handleChange} className={inputClass}>
             {CATEGORIES.map((c) => (
+              <option key={c} value={c}>
+                {c}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label className="text-xs font-sans text-charcoal/50 mb-1 block">Currency</label>
+          <select name="currency" value={form.currency} onChange={handleChange} className={inputClass}>
+            {CURRENCIES.map((c) => (
               <option key={c} value={c}>
                 {c}
               </option>
