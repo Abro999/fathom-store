@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Rating } from "@/components/ui/Rating";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/components/ui/Toast";
+import { formatPrice } from "@/lib/currency";
 
 export function ProductCard({ product, rank }: { product: Product; rank?: number }) {
   const { addItem } = useCart();
@@ -78,9 +79,11 @@ export function ProductCard({ product, rank }: { product: Product; rank?: number
         <p className="text-sm text-charcoal/55 font-sans">{product.descriptor}</p>
         <Rating value={product.rating} count={product.reviewCount} />
         <div className="flex items-baseline gap-2 pt-0.5">
-          <span className="font-sans text-[15px] text-charcoal">${product.price}</span>
+          <span className="font-sans text-[15px] text-charcoal">{formatPrice(product.price, product.currency)}</span>
           {product.compareAtPrice && (
-            <span className="font-sans text-[13px] text-charcoal/40 line-through">${product.compareAtPrice}</span>
+            <span className="font-sans text-[13px] text-charcoal/40 line-through">
+              {formatPrice(product.compareAtPrice, product.currency)}
+            </span>
           )}
           {discount && <span className="font-sans text-[13px] text-rust">-{discount}%</span>}
         </div>

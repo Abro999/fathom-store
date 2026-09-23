@@ -8,6 +8,7 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { useCart } from "@/context/CartContext";
 import { useToast } from "@/components/ui/Toast";
+import { formatPrice } from "@/lib/currency";
 
 export function ProductInfo({ product }: { product: Product }) {
   const { addItem } = useCart();
@@ -53,9 +54,11 @@ export function ProductInfo({ product }: { product: Product }) {
       </div>
 
       <div className="flex items-baseline gap-3">
-        <span className="font-display text-2xl text-charcoal">${variant.price}</span>
+        <span className="font-display text-2xl text-charcoal">{formatPrice(variant.price, product.currency)}</span>
         {variant.compareAtPrice && (
-          <span className="font-sans text-base text-charcoal/40 line-through">${variant.compareAtPrice}</span>
+          <span className="font-sans text-base text-charcoal/40 line-through">
+            {formatPrice(variant.compareAtPrice, product.currency)}
+          </span>
         )}
         {discount && <span className="font-sans text-sm text-rust">Save {discount}%</span>}
       </div>
